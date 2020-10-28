@@ -57,7 +57,7 @@ def get_data():
     output = output + "Vyleceni:%s</br>" % (item['vyleceni'])   
     output = output + "Umrti:%s</br>" % (item['umrti'])   
     output = output + "Aktualne hospitalizovani:%s</br>" % (item['aktualne_hospitalizovani'])   
-    output = output + "Smrtnost: %s / %s * 100 = %s</br>" % (item['umrti'], item['potvrzene_pripady_celkem'] , round((item['umrti'] / item['potvrzene_pripady_celkem'] * 100),3))   
+    output = output + "Smrtnost: %s / %s * 100 = %s%%</br>" % (item['umrti'], item['potvrzene_pripady_celkem'] , round((item['umrti'] / item['potvrzene_pripady_celkem'] * 100),4))   
 
     output = output + "</br><hr><a target='_blank' href='%s'>Zdroj dat umrti</a></br><a target='_blank' href='%s'>Zdroj dat zakladni prehled</a></br><a target='_blank' href='%s'>GitHub zdrojaky</a>" % (death_url,overview_url,github)
     return output
