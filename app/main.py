@@ -16,7 +16,7 @@ def get_data():
     response = requests.get(url)
     
     output = "<h1>Covid 19 pocet umrti od zacatku roku 2020</h1>"
-    output = output + "<h3>Data aktualizovany:%s</h3>" % (response.json()['modified'])
+    output = output + "<h3>Data aktualizovany:%s</h3><hr>" % (response.json()['modified'])
 
     summary = {}
     age_count = 0
@@ -44,5 +44,5 @@ def get_data():
 
     output = output + "</br>Prumerny vek mrtvych:%s</br>" % (round(age_count / total_deaths, 1))
     output = output + "</br>Celkovy pocet mrtvych:%s</br>" % (total_deaths)
-    output = output + "</br><a target='_blank' href='%s'>Zdroj dat</a></br><a target='_blank' href='%s'>GitHub zdrojaky</a>" % (url,github)
+    output = output + "</br><hr><a target='_blank' href='%s'>Zdroj dat</a></br><a target='_blank' href='%s'>GitHub zdrojaky</a>" % (url,github)
     return output
