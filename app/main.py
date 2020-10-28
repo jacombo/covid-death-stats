@@ -11,9 +11,11 @@ def home_view():
 		return get_data()
 
 def get_data():
-    response = requests.get('https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/umrti.json')
+    url = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/umrti.json"
+    github = "https://github.com/jacombo/covid-death-stats"
+    response = requests.get(url)
 
-    output = "<h3>Aktualizovano:%s</br>Zdroj:%s</h3>" % (response.json()['modified'],response.json()['source'])
+    output = "<h3>Aktualizovano:%s</h3>" % (response.json()['modified'])
 
     summary = {}
     age_count = 0
@@ -41,4 +43,5 @@ def get_data():
 
     output = output + "</br>Prumerny vek mrtvych:%s</br>" % (round(age_count / total_deaths, 1))
     output = output + "</br>Celkovy pocet mrtvych:%s</br>" % (total_deaths)
+    output = output + "</br><a target='_blank' href='%s'>Data</a></br><a target='_blank' href='%s'>Zdrojaky</a>" % (url,github)
     return output
