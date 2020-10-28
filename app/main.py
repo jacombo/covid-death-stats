@@ -52,7 +52,7 @@ def get_data():
     output = output + "<hr><h3>Zakladni prehled ke dni %s</h3>" % (item['datum'])  
 
     output = output + "Provedene testy celkem:%s</br>" % (item['provedene_testy_celkem'])   
-    output = output + "Potvrzene pripady_celkem:%s</br>" % (item['potvrzene_pripady_celkem'])   
+    output = output + "Potvrzene pripady celkem:%s</br>" % (item['potvrzene_pripady_celkem'])   
     output = output + "Aktivni pripady:%s</br>" % (item['aktivni_pripady'])   
     output = output + "Vyleceni:%s</br>" % (item['vyleceni'])   
     output = output + "Umrti:%s</br>" % (item['umrti'])   
