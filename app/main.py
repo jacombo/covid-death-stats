@@ -43,5 +43,5 @@ def get_data():
 
     output = output + "</br>Prumerny vek mrtvych:%s</br>" % (round(age_count / total_deaths, 1))
     output = output + "</br>Celkovy pocet mrtvych:%s</br>" % (total_deaths)
-    output = output + "</br><a target='_blank' href='%s'>Data</a></br><a target='_blank' href='%s'>Zdrojaky</a>" % (url,github)
+    output = output + "</br><a target='_blank' href='%s'>Zdroj dat</a></br><a target='_blank' href='%s'>GitHub zdrojaky</a>" % (url,github)
     return output
