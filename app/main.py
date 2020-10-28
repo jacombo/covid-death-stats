@@ -16,7 +16,7 @@ def get_data():
     response = requests.get(url)
     
     output = "<h1>Covid 19 pocet umrti od zacatku roku 2020</h1>"
-    output = output + "<h3>Aktualizovano:%s</h3>" % (response.json()['modified'])
+    output = output + "<h3>Data aktualizovany:%s</h3>" % (response.json()['modified'])
 
     summary = {}
     age_count = 0
