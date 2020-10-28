@@ -11,9 +11,9 @@ def home_view():
 		return get_data()
 
 def get_data():
-    url = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/umrti.json"
+    death_url = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/umrti.json"
     github = "https://github.com/jacombo/covid-death-stats"
-    response = requests.get(url)
+    response = requests.get(death_url)
     
     output = "<h1>Covid 19 pocet umrti od zacatku roku 2020</h1>"
     output = output + "<h3>Data aktualizovany:%s</h3><hr>" % (response.json()['modified'])
@@ -44,5 +44,19 @@ def get_data():
 
     output = output + "</br>Prumerny vek mrtvych:%s</br>" % (round(age_count / total_deaths, 1))
     output = output + "</br>Celkovy pocet mrtvych:%s</br>" % (total_deaths)
-    output = output + "</br><hr><a target='_blank' href='%s'>Zdroj dat</a></br><a target='_blank' href='%s'>GitHub zdrojaky</a>" % (url,github)
+    
+    overview_url = "https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/zakladni-prehled.json"
+    response = requests.get(overview_url)        
+
+    item = response.json()['data'][0]
+    output = output + "<hr><h3>Zakladni prehled ke dni %s</h3>" % (item['datum'])  
+
+    output = output + "Provedene testy celkem:%s</br>" % (item['provedene_testy_celkem'])   
+    output = output + "Potvrzene pripady_celkem:%s</br>" % (item['potvrzene_pripady_celkem'])   
+    output = output + "Aktivni pripady:%s</br>" % (item['aktivni_pripady'])   
+    output = output + "Vyleceni:%s</br>" % (item['vyleceni'])   
+    output = output + "Umrti:%s</br>" % (item['umrti'])   
+    output = output + "Aktualne hospitalizovani:%s</br>" % (item['aktualne_hospitalizovani'])   
+
+    output = output + "</br><hr><a target='_blank' href='%s'>Zdroj dat umrti</a></br><a target='_blank' href='%s'>Zdroj dat zakladni prehled</a></br><a target='_blank' href='%s'>GitHub zdrojaky</a>" % (death_url,overview_url,github)
     return output
