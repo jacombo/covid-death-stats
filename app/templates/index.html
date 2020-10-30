@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>Covid deaths stats</title>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="static/render.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+</head>
+<body>
+    <h3 class="d-flex justify-content-center" >Covid 19 pocet umrti od zacatku roku 2020</h3>
+    <br>
+    <div class="d-flex justify-content-center">
+        <table id="deaths_by_age" class="table table-striped table-bordered p-2" style="width:100%">
+            <thead>
+                <td>Vek</td>
+                <td>Pocet umrti</td>
+                <td>Procent</td>
+            </thead>
+            <tbody>
+            {% for item in deaths.groups %}
+                <tr><td> {{  item.age }}</td> <td> {{ item.count }}</td> <td> {{ item.percentage }}%</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p class="d-flex justify-content-center">Data aktualizovany: {{ deaths.last_updated }}</p>
+    <div class="d-flex justify-content-center">
+        <p class="p-2"> Prumerny vek mrtvych: {{ deaths.average_death_age }} </p>
+        <p class="p-2"> Celkovy pocet mrtvych: {{ deaths.total_deaths }}</p>
+    </div>
+
+    <h3 class="d-flex justify-content-center" >Zakladni prehled ke dni {{  general['to_date']  }} </h3>
+    <br>
+    <div class="d-flex justify-content-center">
+        <table id="general_stats" class="table table-striped table-bordered p-2" style="width:100%">
+            <thead>
+                <td>Info</td>
+                <td>#</td>
+            </thead>
+            <tbody>
+                <tr><td>Provedene testy celkem</td> <td> {{ general['tests_total'] }} </td></tr>
+                <tr><td>Potvrzene pripady celkem</td> <td> {{ general['confirmed_cases_total'] }} </td></tr>
+                <tr><td>Aktivni pripady</td> <td> {{ general['active_cases']  }} </td></tr>
+                <tr><td>Vyleceni</td> <td> {{ general['cured']  }}</td></tr>
+                <tr><td>Umrti </td> <td> {{ general['deaths'] }} </td></tr>
+                <tr><td>Aktualne hospitalizovani </td> <td> {{ general['currently_hospitalized'] }} </td></tr>
+                <tr><td>Smrtnost</td> <td> {{ general['mortality'] }} %</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <a class="p-2" target='_blank' href={{ general['src_deaths'] }}>Zdroj dat umrti</a>
+        <a class="p-2" target='_blank' href={{ general['src_general'] }}>Zdroj dat zakladni prehled</a>
+        <a class="p-2" target='_blank' href={{ general['src_code'] }}>GitHub zdrojaky</a>
+    </div>
+</body>
+</html>
+
+
